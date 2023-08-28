@@ -1,10 +1,12 @@
 import logo from "../images/logo.png";
 import {Link} from "react-router-dom";
+import DailyPlan from "../components/DailyPlan";
 
 const Home = () => {
     return (
         <div className="App">
             <Link to="/login">login</Link>
+            <DailyPlan/>
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo"/>
                 <p>
