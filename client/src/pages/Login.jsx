@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { TextField, Button, Alert, Container, Box, Grid } from "@mui/material";
-import { Router, Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [emptyInput, setEmptyInput] = useState(false);
@@ -55,26 +57,22 @@ const Login = () => {
   };
 
   if (loggedIn) {
-    return (
-      <Container>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <h1>Welcome, {username}!</h1>
-          <Button onClick={handleLogout}>Logout</Button>
-        </Box>
-      </Container>
-    );
     // return (
-    //   <Router>
-    //     <Route path="/"></Route>
-    //   </Router>
+    //   <Container>
+    //     <Box
+    //       sx={{
+    //         display: "flex",
+    //         flexDirection: "column",
+    //         justifyContent: "center",
+    //         alignItems: "center",
+    //       }}
+    //     >
+    //       <h1>Welcome, {username}!</h1>
+    //       <Button onClick={handleLogout}>Logout</Button>
+    //     </Box>
+    //   </Container>
     // );
+    navigate("/", { state: { username: username } });
   }
 
   return (
