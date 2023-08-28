@@ -32,7 +32,7 @@ const options = {
 const container = document.getElementById('calendar');
 const calendar = new Calendar(container, options);
 
-calendar.render();
+// calendar.render();
 
 calendar.createEvents([
     {
@@ -62,7 +62,7 @@ calendar.createEvents([
 
 const DailyPlan = () => {
     return (
-        <div className={main__content}>
+        <div>
             <div id="calendar" style={{height: "600px"}}></div>
         </div>
     )
