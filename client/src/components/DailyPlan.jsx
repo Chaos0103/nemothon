@@ -7,13 +7,10 @@ import '@toast-ui/calendar/dist/toastui-calendar.min.css'; // Calendar 스타일
 
 const options = {
     defaultView: 'day',
-    timezone: {
-        zones: [
-            {
-                timezoneName: 'Asia/Seoul',
-                displayLabel: 'Seoul',
-            },
-        ],
+    useDetailPopup: true,
+    week: {
+        taskView: false,
+        // eventView:  'task',
     },
     calendars: [
         {
@@ -32,32 +29,33 @@ const options = {
 const container = document.getElementById('calendar');
 const calendar = new Calendar(container, options);
 
-// calendar.render();
+calendar.render();
 
 calendar.createEvents([
     {
         id: 'event1',
         calendarId: 'cal2',
-        title: '주간 djWjrn',
-        start: '2023-08-28T09:00:00',
-        end: '2023-08-28T10:00:00',
+        title: '주간 회의',
+        start: '2023-08-29T09:00:00',
+        end: '2023-08-29T10:00:00',
+        goingDuration: 70,
     },
     {
         id: 'event2',
         calendarId: 'cal1',
         title: '점심 약속',
-        start: '2023-08-28T12:00:00',
-        end: '2023-08-28T13:00:00',
+        start: '2023-08-29T12:00:00',
+        end: '2023-08-29T13:00:00',
     },
-    {
-        id: 'event3',
-        calendarId: 'cal2',
-        title: '휴가',
-        start: '2022-06-08',
-        end: '2022-06-10',
-        isAllday: true,
-        category: 'allday',
-    },
+    // {
+    //     id: 'event3',
+    //     calendarId: 'cal2',
+    //     title: '휴가',
+    //     start: '2023-08-29',
+    //     end: '2023-08-30',
+    //     isAllday: true,
+    //     category: 'allday',
+    // },
 ]);
 
 const DailyPlan = () => {
