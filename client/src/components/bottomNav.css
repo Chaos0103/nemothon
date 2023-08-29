@@ -1,0 +1,79 @@
+.wrapper {
+    height: auto;
+    min-height: 100%;
+}
+
+aside {
+    border: darkgray 1px solid;
+    overflow: hidden;
+}
+
+aside > nav {
+    width: 100%;
+    max-width: 76.8rem;
+    /*height: 5rem;*/
+    height: 65px;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.link {
+    color: black;
+    text-decoration: none;
+    width: calc(50% - 2.3rem);
+    min-width: 10%;
+    height: 100%;
+    display: block;
+    padding: 0.8rem 0;
+    text-align: center;
+    z-index: 30;
+}
+
+.logo {
+    display: flex;
+    width: 9.2rem;
+    z-index: 30;
+    position: relative;
+}
+
+.logo-link {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 15%);
+    width: 3rem;
+    height: 3rem;
+    background-size: 3rem 3rem;
+}
+
+.logo-background-img {
+    background-image: url('../images/logo-circle.png');
+}
+
+.tab-daily .tab-daily-icon {
+    display: block;
+    background-image: url('../images/calendar-date.svg');
+}
+
+.tab-people .tab-people-icon {
+    display: block;
+    background-image: url('../images/person-fill.svg');
+}
+
+.tab-daily .tab-daily-icon,
+.tab-people .tab-people-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background: 50% no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+    position: relative;
+}
+
+.tab-daily .tab-daily-label,
+.tab-people .tab-people-label {
+    font-size: 0.8rem;
+    font-weight: 400;
+    display: block;
+    margin-top: 0.4rem;
+}
