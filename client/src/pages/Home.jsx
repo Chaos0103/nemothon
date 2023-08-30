@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <div>
             <Link to="/login">login</Link>
-            <DailyPlan/>
+            {/*<DailyPlan/>*/}
             <MonthPlan/>
             <header className="App-header">
                 <h1>test</h1>
