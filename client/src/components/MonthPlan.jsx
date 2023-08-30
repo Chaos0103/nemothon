@@ -5,6 +5,14 @@ import 'tui-calendar/dist/tui-calendar.css';
 
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
+
+import '@toast-ui/calendar/dist/toastui-calendar.min.css'; // Calendar 스타일
+
+// const options = {
+//     defaultView: 'month',
+//     useDetailPopup: true,
+//     week: {
+//         taskView: false,
 //         // eventView:  'task',
 //     },
 //     calendars: [
@@ -42,14 +50,23 @@ import 'tui-time-picker/dist/tui-time-picker.css';
 //         start: '2023-08-29T12:00:00',
 //         end: '2023-08-29T13:00:00',
 //     },
+//     // {
+//     //     id: 'event3',
+//     //     calendarId: 'cal2',
+//     //     title: '휴가',
+//     //     start: '2023-08-29',
+//     //     end: '2023-08-30',
+//     //     isAllday: true,
+//     //     category: 'allday',
+//     // },
 // ]);
 
-const DailyPlan = () => {
+const MonthPlan = () => {
     return (
         <div>
             {/*<div id="calendar" style={{height: "600px"}}></div>*/}
             <Calendar
-                view={"day"}
+                view={"month"}
                 height="700px"
                 calendars={[
                     {
@@ -81,4 +98,4 @@ const DailyPlan = () => {
     )
 }
 
-export default DailyPlan;
+export default MonthPlan;
