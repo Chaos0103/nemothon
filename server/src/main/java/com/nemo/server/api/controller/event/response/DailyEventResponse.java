@@ -11,8 +11,8 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 public class DailyEventResponse {
 
-    private Long id;
-    private Long categoryId;
+    private String id;
+    private String categoryId;
     private String title;
     private String start;
     private String end;
@@ -20,8 +20,8 @@ public class DailyEventResponse {
 
     @Builder
     public DailyEventResponse(Long id, Long categoryId, String title, LocalDateTime start, LocalDateTime end, int goingDuration) {
-        this.id = id;
-        this.categoryId = categoryId;
+        this.id = id+"";
+        this.categoryId = categoryId+"";
         this.title = title;
         this.start = start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         this.end = end.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
