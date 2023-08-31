@@ -1,5 +1,6 @@
-package com.nemo.server.notification;
+package com.nemo.server.domain.notification.api;
 
+import com.nemo.server.domain.notification.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
