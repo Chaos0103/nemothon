@@ -15,7 +15,7 @@ const Home = () => {
       <TopNav />
       <div className="top-bar"></div>
       <Notification></Notification>
-      <Link to="/search">search</Link>
+      {/* <Link to="/search">search</Link> */}
       <MonthPlan />
     </div>
   );
