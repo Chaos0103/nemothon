@@ -1,5 +1,6 @@
 package com.nemo.server.api.service.event;
 
+import com.nemo.server.api.controller.event.response.DailyEventResponse;
 import com.nemo.server.api.controller.event.response.MonthEventResponse;
 import com.nemo.server.api.service.event.dto.AddEventDto;
 import com.nemo.server.domain.category.Category;
@@ -41,5 +42,11 @@ public class EventService {
     public List<MonthEventResponse> searchMonth(String memberEmail, LocalDateTime startDay, LocalDateTime endDay) {
         Member member = memberRepository.findByEmail(memberEmail).orElseThrow(NoSuchElementException::new);
         return eventQueryRepository.getMonthEvent(member.getId(), startDay, endDay);
+    }
+
+    public List<DailyEventResponse> searchDaily(String memberEmail, LocalDateTime day) {
+        Member member = memberRepository.findByEmail(memberEmail).orElseThrow(NoSuchElementException::new);
+
+        return eventQueryRepository.getDailyEvent(member.getId(), day);
     }
 }
