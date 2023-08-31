@@ -1,11 +1,14 @@
 package com.nemo.server.domain.notification.service;
 
+import com.nemo.server.domain.member.Member;
+import com.nemo.server.domain.member.repository.MemberRepository;
 import com.nemo.server.notification.dao.EmitterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -14,14 +17,14 @@ public class NotificationService {
     private static final Long DEFAULT_TIMEOUT = 60L * 1000 * 60;
 
     private final EmitterRepository emitterRepository;
+    private final MemberRepository memberRepository;
 
     /**
      * 클라이언트가 구독을 위해 호출하는 메서드.
      */
-    public SseEmitter subscribe(Long userId) {
-        SseEmitter emitter = createEmitter(userId);
-
-        sendToClient(userId, "EventStream Created. [userId=" + userId + "]");
+    public SseEmitter subscribe(String memberEmail) {
+        Member member = memberRepository.findByEmail(memberEmail).orElseThrow(NoSuchElementException::new);
+        SseEmitter emitter = createEmitter(member.getId());
         return emitter;
     }
 
