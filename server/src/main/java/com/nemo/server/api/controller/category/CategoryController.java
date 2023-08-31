@@ -23,8 +23,9 @@ public class CategoryController {
     @PostMapping("/add")
     public ApiResponse<CategoryResponse> add(@RequestBody AddCategoryRequest request) {
         log.debug("CategoryController.add");
+        String email = SecurityUtil.getCurrentLoginId();
         log.debug("AddCategoryRequest={}", request);
-        CategoryResponse response = categoryService.add(request.toAddCategoryDto());
+        CategoryResponse response = categoryService.add(email, request.toAddCategoryDto());
         log.debug("CategoryResponse={}", response);
         return ApiResponse.ok(response);
     }

@@ -22,7 +22,7 @@ public class CategoryResponse {
         return CategoryResponse.builder()
             .categoryId(category.getId())
             .name(category.getName())
-            .colorCode(builder().colorCode)
+            .colorCode(category.getColorCode())
             .build();
     }
 }

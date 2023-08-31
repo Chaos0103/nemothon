@@ -1,6 +1,7 @@
 package com.nemo.server.api.service.category.dto;
 
 import com.nemo.server.domain.category.Category;
+import com.nemo.server.domain.member.Member;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,10 +17,11 @@ public class AddCategoryDto {
         this.colorCode = colorCode;
     }
 
-    public Category toEntity() {
+    public Category toEntity(Member member) {
         return Category.builder()
-            .name(this.name)
-            .colorCode(this.colorCode)
-            .build();
+                .name(this.name)
+                .colorCode(this.colorCode)
+                .member(member)
+                .build();
     }
 }

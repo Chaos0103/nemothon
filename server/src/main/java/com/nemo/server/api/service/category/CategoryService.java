@@ -5,6 +5,8 @@ import com.nemo.server.api.service.category.dto.AddCategoryDto;
 import com.nemo.server.api.service.category.dto.EditCategoryDto;
 import com.nemo.server.domain.category.Category;
 import com.nemo.server.domain.category.repository.CategoryRepository;
+import com.nemo.server.domain.member.Member;
+import com.nemo.server.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,10 +21,13 @@ public class CategoryService {
 
 
     private final CategoryRepository repository;
+    private final MemberRepository memberRepository;
 
-    public CategoryResponse add(AddCategoryDto dto) {
+    public CategoryResponse add(String email, AddCategoryDto dto) {
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(NoSuchElementException::new);
         dto.setColorCode(randomColorCode());
-        Category category = dto.toEntity();
+        Category category = dto.toEntity(member);
         Category savedCategory = repository.save(category);
         return CategoryResponse.of(savedCategory);
     }

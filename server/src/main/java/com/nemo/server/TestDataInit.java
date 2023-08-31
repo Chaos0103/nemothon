@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.Collections;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class TestDataInit {
 
