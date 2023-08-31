@@ -28,10 +28,11 @@ public class Category {
     private Member member;
 
     @Builder
-    private Category(Long id, String name, String colorCode) {
+    private Category(Long id, String name, String colorCode, Member member) {
         this.id = id;
         this.name = name;
         this.colorCode = colorCode;
+        this.member = member;
     }
 
     public void edit(String name, String colorCode) {
