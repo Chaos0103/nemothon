@@ -34,26 +34,9 @@ const TopNav = () => {
                             <Link to='/add'>
                                 <div className='plus-link plus-background-img'></div>
                             </Link>
-                            <div onClick={() => setOpen(true)}>
-                                <div className='tag-icon tag-background-img'></div>
-                            </div>
                         </div>
                     </div>
                 </header>
-                <Sheet isOpen={isOpen} onClose={() => setOpen(false)}>
-                    <Sheet.Container>
-                        <Sheet.Header/>
-                        <Sheet.Content>
-                            <div className='title-div'>
-                                <div className='title'>새 카테고리 만들기</div>
-                            </div>
-                            <div className='input-form'>
-                                <input type='text' placeholder='카테고리 이름'/>
-                            </div>
-                        </Sheet.Content>
-                    </Sheet.Container>
-                    <Sheet.Backdrop/>
-                </Sheet>
             </section>
         );
     } else {

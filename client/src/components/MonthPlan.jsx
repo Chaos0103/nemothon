@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import Calendar from '@toast-ui/react-calendar';
 import 'tui-calendar/dist/tui-calendar.css';
@@ -63,6 +63,10 @@ import '@toast-ui/calendar/dist/toastui-calendar.min.css';
 // ]);
 
 const MonthPlan = () => {
+    useEffect(() => {
+        sessionStorage.clear();
+    }, []);
+
     return (
         <div>
             {/*<div id="calendar" style={{height: "600px"}}></div>*/}
