@@ -1,10 +1,12 @@
 package com.nemo.server.domain.event.repository;
 
+import com.nemo.server.api.controller.event.response.DailyEventResponse;
 import com.nemo.server.api.controller.event.response.MonthEventResponse;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -34,6 +36,24 @@ public class EventQueryRepository {
                 .join(event.category, category)
                 .where(event.member.id.eq(memberId),
                         event.startTime.between(startDay, endDay))
+                .fetch();
+    }
+
+    public List<DailyEventResponse> getDailyEvent(Long memberId, LocalDateTime day) {
+        LocalDate startDay = day.toLocalDate();
+        LocalDate endDay = startDay.plusDays(1);
+        return queryFactory.select(constructor(DailyEventResponse.class,
+                        event.id,
+                        event.category.id,
+                        event.title,
+                        event.startTime,
+                        event.endTime,
+                        event.goingTime
+                ))
+                .from(event)
+                .join(event.category, category)
+                .where(event.member.id.eq(memberId),
+                        event.startTime.between(startDay.atStartOfDay(), endDay.atStartOfDay()))
                 .fetch();
     }
 }
