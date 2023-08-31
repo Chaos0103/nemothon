@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 public class MonthEventResponse {
 
-    private Long eventId;
+    private Long id;
     private Long categoryId;
     private String title;
     private String start;
@@ -19,8 +19,8 @@ public class MonthEventResponse {
     private int goingDuration;
 
     @Builder
-    public MonthEventResponse(Long eventId, Long categoryId, String title, LocalDateTime start, LocalDateTime end, int goingDuration) {
-        this.eventId = eventId;
+    public MonthEventResponse(Long id, Long categoryId, String title, LocalDateTime start, LocalDateTime end, int goingDuration) {
+        this.id = id;
         this.categoryId = categoryId;
         this.title = title;
         this.start = start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
