@@ -23,9 +23,9 @@ public class EventService {
     private final MemberRepository memberRepository;
     private final CategoryRepository categoryRepository;
 
-    public Long addEvent(Long memberId, Long categoryId, AddEventDto dto) {
+    public Long addEvent(String memberEmail, Long categoryId, AddEventDto dto) {
 
-        Member member = memberRepository.findById(memberId).orElseThrow(NoSuchElementException::new);
+        Member member = memberRepository.findByEmail(memberEmail).orElseThrow(NoSuchElementException::new);
         Category category = categoryRepository.findById(categoryId).orElseThrow(NoSuchElementException::new);
 
         Event event = Event.toEntity(dto.getTitle(), dto.getStartTime(), dto.getEndTime(), dto.getExpectedDepartureTime(), dto.getGoingTime(), dto.getArrivalName(), dto.getArrivalLatitude(), dto.getArrivalLongitude(), dto.getDepartureLatitude(), dto.getDepartureLongitude(), member, category);
