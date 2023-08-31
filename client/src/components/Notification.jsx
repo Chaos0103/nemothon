@@ -12,11 +12,10 @@ const Notification = () => {
 
     // const eventSource = new EventSource("http://localhost:8080/notifications/subscribe/" + userId);
 
+    const token = localStorage.getItem("token");
     const eventSource = new EventSourcePolyfill(`http://localhost:8080/notifications/subscribe`, {
       headers: {
-        "Access-Control-Allow-Origin": "http://localhost:3000/",
-        "Access-Control-Allow-Headers": "Authorization",
-        Authorization: localStorage.getItem("token"),
+        Authorization: `Bearer ${token}`,
       },
     });
 

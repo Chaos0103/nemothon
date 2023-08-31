@@ -29,10 +29,10 @@ public class EventController {
             @Valid @RequestBody AddEventRequest request
     ) {
         String memberEmail = SecurityUtil.getCurrentLoginId();
-        AddEventDto dto = AddEventDto.toDto(request);
+//        AddEventDto dto = AddEventDto.toDto(request);
 
-        Long eventId = eventService.addEvent(memberEmail, request.getCategoryId(), dto);
-
+//        Long eventId = eventService.addEvent(memberEmail, request.getCategoryId(), dto);
+        Long eventId = null;
         return ApiResponse.ok(eventId);
     }
 
@@ -58,6 +58,7 @@ public class EventController {
     @GetMapping("/day/{day}")
     public ApiResponse<List<DailyEventResponse>> getDaily(
             @PathVariable String day) {
+        log.debug("EventController#getDaily");
         String memberEmail = SecurityUtil.getCurrentLoginId();
         String[] date = day.split("-");
         LocalDateTime start = LocalDate.of(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2])).atStartOfDay();

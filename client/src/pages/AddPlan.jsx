@@ -1,8 +1,6 @@
 import { RecoilRoot } from 'recoil';
 import axios from "axios";
-import {Link} from "react-router-dom";
 import '../assets/scss/addPlan.scss';
-import { useSetRecoilState, useRecolValue } from 'recoil';
 import AddPlanForm from "../components/AddPlanForm";
 
 const AddPlan = () => {

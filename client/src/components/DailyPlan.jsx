@@ -97,7 +97,8 @@ class DailyPlan extends React.Component {
         axios
             .get(`/api/event/day/${showDate}`, {
                 headers: {
-                    Authorization: localStorage.getItem("token")
+                    Authorization: localStorage.getItem("token"),
+                    "Content-Type": `application/json`,
                 }
             })
             .then((response) => {

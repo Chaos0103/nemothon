@@ -14,18 +14,20 @@ const App = () => {
 
     return (
         <div className="App">
-            <TopNav/>
+            <Routes>
+                <Route path="/" element={<Login/>}/>
+            </Routes>
             <div className='wrapper'>
+                <TopNav/>
                 <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/month" element={<Home/>}/>
                     <Route path="/daily" element={<DailyPlan/>}/>
                     <Route path="/my" element={<MyPage/>}/>
                     <Route path="/search" element={<AreaSearch/>}/>
                     <Route path="/add" element={<AddPlan/>}/>
                 </Routes>
+                <BottomNav/>
             </div>
-            <BottomNav/>
         </div>
     );
 };
