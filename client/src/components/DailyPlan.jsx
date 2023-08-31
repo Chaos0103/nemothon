@@ -45,6 +45,9 @@ import 'tui-time-picker/dist/tui-time-picker.css';
 // ]);
 
 const DailyPlan = () => {
+    // docutc. ~~~~ 지양
+    // 요소선택 = useRef
+
     return (
         <div>
             {/*<div id="calendar" style={{height: "600px"}}></div>*/}
