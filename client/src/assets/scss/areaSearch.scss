@@ -1,0 +1,26 @@
+.form {
+  margin: 1rem 0;
+  text-align: center;
+}
+input[type="text"] {
+  width: 90%;
+  height: 2rem;
+  border: 1px solid #e0e0e0;
+  padding: 0 15px;/* 내용물 작성했을 때 여백감 */
+  border-radius: 50px;/* 굴곡 주면 padding 값도 그에 상응하게 적용하는 것이 좋음 */
+}
+input {
+  width: 90%;
+  height: 2rem;
+}
+
+.result-div {
+
+  border-bottom: darkgray 0.5px solid;
+}
+
+.result {
+  color: gray;
+  font-size: 0.8rem;
+  margin: 0.75rem;
+}
