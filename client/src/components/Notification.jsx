@@ -3,8 +3,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Notification = () => {
-  const notify = () => toast("hello");
-
   useEffect(() => {
     const eventSource = new EventSource("http://localhost:8080/notifications/subscribe/1");
 
@@ -26,7 +24,6 @@ const Notification = () => {
 
   return (
     <div>
-      <button onClick={notify}>hello</button>
       <ToastContainer
         position="top-right" // 알람 위치 지정
         autoClose={5000} // 자동 off 시간
