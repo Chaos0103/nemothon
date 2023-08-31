@@ -64,3 +64,14 @@
   text-align: center;
   z-index: 30;
 }
+
+.tag-icon {
+  left: 50%;
+  width: 2.25rem;
+  height: 2.25rem;
+  background-size: 2.25rem 2.25rem;
+}
+
+.tag-background-img {
+  background-image: url('../images/tag-outline.svg');
+}

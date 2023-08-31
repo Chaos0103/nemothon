@@ -11,6 +11,7 @@ import TopNav from "./components/TopNav";
 import AddPlan from "./pages/AddPlan";
 
 const App = () => {
+
     return (
         <div className="App">
             <TopNav/>
