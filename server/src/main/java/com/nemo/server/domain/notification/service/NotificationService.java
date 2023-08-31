@@ -4,6 +4,8 @@ import com.nemo.server.domain.member.Member;
 import com.nemo.server.domain.member.repository.MemberRepository;
 import com.nemo.server.notification.dao.EmitterRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 

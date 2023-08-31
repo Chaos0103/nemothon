@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 @RestController
-@RequestMapping("/notifications")
+@RequestMapping("/api/notifications")
 @RequiredArgsConstructor
 public class NotificationController {
     private final NotificationService notificationService;
