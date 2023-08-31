@@ -45,7 +45,8 @@ public class EventService {
     }
 
     public List<DailyEventResponse> searchDaily(String memberEmail, LocalDateTime day) {
-        Member member = memberRepository.findByEmail(memberEmail).orElseThrow(NoSuchElementException::new);
+        Member member = memberRepository.findByEmail(memberEmail)
+                .orElseThrow(NoSuchElementException::new);
 
         return eventQueryRepository.getDailyEvent(member.getId(), day);
     }

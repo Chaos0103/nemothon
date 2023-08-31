@@ -70,4 +70,8 @@ public class Event {
                 .category(category)
                 .build();
     }
+
+    public void updateGoingTime(int gonigTIme) {
+        this.goingTime = goingTime;
+    }
 }
