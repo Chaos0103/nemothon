@@ -29,10 +29,9 @@ public class EventController {
             @Valid @RequestBody AddEventRequest request
     ) {
         String memberEmail = SecurityUtil.getCurrentLoginId();
-//        AddEventDto dto = AddEventDto.toDto(request);
+        AddEventDto dto = AddEventDto.toDto(request);
 
-//        Long eventId = eventService.addEvent(memberEmail, request.getCategoryId(), dto);
-        Long eventId = null;
+        Long eventId = eventService.addEvent(memberEmail, request.getCategoryId(), dto);
         return ApiResponse.ok(eventId);
     }
 

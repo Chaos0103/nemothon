@@ -1,6 +1,6 @@
 package com.nemo.server.api.service.event.dto;
 
-//import com.nemo.server.api.controller.event.request.AddEventRequest;
+import com.nemo.server.api.controller.event.request.AddEventRequest;
 import lombok.Builder;
 import lombok.Data;
 
@@ -34,18 +34,19 @@ public class AddEventDto {
         this.departureLongitude = departureLongitude;
     }
 
-//    public static AddEventDto toDto(AddEventRequest request){
-//        return AddEventDto.builder()
-//                .title(request.getTitle())
-//                .startTime(request.getStartTime())
-//                .endTime(request.getEndTime())
-//                .expectedDepartureTime(request.getExpectedDepartureTime())
-//                .goingTime(request.getGoingTime())
-//                .arrivalName(request.getArrivalName())
-//                .arrivalLatitude(request.getArrivalLatitude())
-//                .arrivalLongitude(request.getArrivalLongitude())
-//                .departureLatitude(request.getDepartureLatitude())
-//                .departureLongitude(request.getDepartureLongitude())
-//                .build();
-//    }
+    public static AddEventDto toDto(AddEventRequest request) {
+        LocalDateTime expectedDepartureTime = request.getStartTime().minusMinutes(request.getGoingTime());
+        return AddEventDto.builder()
+                .title(request.getTitle())
+                .startTime(request.getStartTime())
+                .endTime(request.getEndTime())
+                .expectedDepartureTime(expectedDepartureTime)
+                .goingTime(request.getGoingTime())
+                .arrivalName(request.getArrivalName())
+                .arrivalLatitude(request.getArrivalLatitude())
+                .arrivalLongitude(request.getArrivalLongitude())
+                .departureLatitude(request.getDepartureLatitude())
+                .departureLongitude(request.getDepartureLongitude())
+                .build();
+    }
 }
