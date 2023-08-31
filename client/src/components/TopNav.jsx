@@ -29,7 +29,7 @@ const TopNav = () => {
             <section className='top-section header'>
                 <header>
                     <div className='top-bar'>
-                        <div className='tab title'>8월</div>
+                        <div className='tab title'>9월</div>
                         <div className='tab add-icon'>
                             <Link to='/add'>
                                 <div className='plus-link plus-background-img'></div>
