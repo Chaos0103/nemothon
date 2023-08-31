@@ -20,6 +20,7 @@ public class MemberController {
     @PostMapping("/login")
     public ApiResponse<TokenInfo> login(@RequestBody LoginRequest request) {
         log.debug("MemberController.login");
+        log.debug("LoginRequest={}", request);
         TokenInfo tokenInfo = memberService.login(request.getEmail(), request.getPassword());
         log.debug("tokenInfo={}", tokenInfo);
         return ApiResponse.ok(tokenInfo);
