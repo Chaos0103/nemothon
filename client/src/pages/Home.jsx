@@ -13,7 +13,7 @@ const Home = () => {
     return (
         <div>
             <div className='top-bar'></div>
-            <Notification></Notification>
+            {/*<Notification></Notification>*/}
             <Link to="/search">search</Link>
             <MonthPlan/>
         </div>

@@ -23,7 +23,7 @@ const App = () => {
                     <Route path="/month" element={<Home/>}/>
                     <Route path="/daily" element={<DailyPlan/>}/>
                     <Route path="/my" element={<MyPage/>}/>
-                    <Route path="/search" element={<AreaSearch/>}/>
+                    <Route path="/search/:command" element={<AreaSearch/>}/>
                     <Route path="/add" element={<AddPlan/>}/>
                 </Routes>
                 <BottomNav/>

@@ -2,9 +2,11 @@ import '../assets/scss/areaSearch.scss'
 import {useState} from "react";
 import axios from "axios";
 import AreaCard from "../components/AreaCard";
+import {useParams} from "react-router-dom";
 
 const AreaSearch = () => {
 
+    const {command} = useParams();
     const [keyword, setKeyword] = useState('');
     const [responses, setResponses] = useState([]);
 
@@ -23,10 +25,7 @@ const AreaSearch = () => {
                     }
                 })
             .then(response => {
-                console.log(keyword);
                 setResponses(response.data.documents);
-                console.log(response.data.documents);
-                console.log(responses.length);
             });
     }
 
@@ -40,7 +39,7 @@ const AreaSearch = () => {
                 <div className='result'>장소결과</div>
             </div>
             <div>
-                {responses.map((response) => <AreaCard key={response.id} data={response}/>)}
+                {responses.map((response) => <AreaCard key={response.id} data={response} command={command}/>)}
             </div>
         </div>
     );
