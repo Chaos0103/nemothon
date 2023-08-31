@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { EventSourcePolyfill } from "event-source-polyfill";
 
 const Notification = () => {
   const [userId, setUserId] = useState("");
   // TODO: userId의 정보를 어디서 가져올지를 생각해봐야할 듯
 
   useEffect(() => {
-    const eventSource = new EventSource("http://localhost:8080/notifications/subscribe/1");
+    // const eventSource = new EventSource("http://localhost:8080/notifications/subscribe/1");
 
     // const eventSource = new EventSource("http://localhost:8080/notifications/subscribe/" + userId);
+
+    const eventSource = new EventSourcePolyfill(`http://localhost:8080/notifications/subscribe`, {
+      headers: {
+        "Access-Control-Allow-Origin": "http://localhost:3000/",
+        "Access-Control-Allow-Headers": "Authorization",
+        Authorization: localStorage.getItem("token"),
+      },
+    });
 
     eventSource.addEventListener("sse", (event) => {
       if (event.data !== "EventStream Created. [userId=1]") {
