@@ -13,7 +13,6 @@ public class AddEventRequest {
     private String title;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private LocalDateTime expectedDepartureTime;
     private int goingTime;
     private String arrivalName;
     private Double arrivalLatitude;
@@ -27,7 +26,6 @@ public class AddEventRequest {
         this.title = title;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.expectedDepartureTime = expectedDepartureTime;
         this.goingTime = goingTime;
         this.arrivalName = arrivalName;
         this.arrivalLatitude = arrivalLatitude;
