@@ -2,6 +2,7 @@ package com.nemo.server.api.controller.event;
 
 import com.nemo.server.api.ApiResponse;
 import com.nemo.server.api.controller.event.request.AddEventRequest;
+import com.nemo.server.api.controller.event.response.DailyEventResponse;
 import com.nemo.server.api.controller.event.response.MonthEventResponse;
 import com.nemo.server.api.service.event.EventService;
 import com.nemo.server.api.service.event.dto.AddEventDto;
@@ -35,7 +36,7 @@ public class EventController {
         return ApiResponse.ok(eventId);
     }
 
-    @GetMapping("/{period}")
+    @GetMapping("/month/{period}")
     public ApiResponse<List<MonthEventResponse>> getMonth(
             @PathVariable String period) {
         String memberEmail = SecurityUtil.getCurrentLoginId();
@@ -46,5 +47,16 @@ public class EventController {
 
         List<MonthEventResponse> list = eventService.searchMonth(memberEmail, start, end);
         return ApiResponse.ok(list);
+    }
+
+    @GetMapping("/day/{day}")
+    public ApiResponse<List<DailyEventResponse>> getDaily(
+            @PathVariable String day) {
+        String memberEmail = SecurityUtil.getCurrentLoginId();
+
+        LocalDateTime start = LocalDateTime.parse(day, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        List<DailyEventResponse> dailyEventResponses = eventService.searchDaily(memberEmail, start);
+
+        return ApiResponse.ok(dailyEventResponses);
     }
 }
