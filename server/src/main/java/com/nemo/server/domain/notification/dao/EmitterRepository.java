@@ -1,4 +1,4 @@
-package com.nemo.server.notification;
+package com.nemo.server.notification.dao;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
