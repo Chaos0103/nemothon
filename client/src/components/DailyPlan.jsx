@@ -6,7 +6,6 @@ import 'tui-calendar/dist/tui-calendar.css';
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
 import axios from "axios";
-import {CalendarInfo} from "@toast-ui/calendar/types/types/options";
 
 // import axios from "axios";
 
@@ -65,26 +64,26 @@ class DailyPlan extends React.Component {
         let token = localStorage.getItem("token");
 
         // 카테고리 가져오기
-        await axios
-            .get(`/api/categories`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }).then((response) => {
-                console.log("등록된 카테고리 불러옴", response.data.data)
-                this.state.calendars = response.data.data;
-                //카테고리 여러개 왔음
-                response.data.data.map(function (i) {
-                    //id:String, name:String 으로 CalendarInfo 만듦
-                    this.state.CalendarInfo.push()
-                    //CalendarInfo 배열을 아래코드로 라이브러리에 등록
-                    // calendarInstance.setCalendars(this.state.CalendarInfo)
-                })
-                //반복 끝나면 다시 배열 돌리면서 색상 정해줘야함
-                response.data.data.map(function (i) {
-                    calendarInstance.setCalendarColor(this.state.CalendarInfo.id, "#" + response.data.data.color);
-                })
-            });
+        // await axios
+        //     .get(`/api/categories`, {
+        //         headers: {
+        //             Authorization: `Bearer ${token}`
+        //         }
+        //     }).then((response) => {
+        //         console.log("등록된 카테고리 불러옴", response.data.data)
+        //         this.state.calendars = response.data.data;
+        //         //카테고리 여러개 왔음
+        //         response.data.data.map(function (i) {
+        //             //id:String, name:String 으로 CalendarInfo 만듦
+        //             this.state.CalendarInfo.push()
+        //             //CalendarInfo 배열을 아래코드로 라이브러리에 등록
+        //             // calendarInstance.setCalendars(this.state.CalendarInfo)
+        //         })
+        //         //반복 끝나면 다시 배열 돌리면서 색상 정해줘야함
+        //         response.data.data.map(function (i) {
+        //             calendarInstance.setCalendarColor(this.state.CalendarInfo.id, "#" + response.data.data.color);
+        //         })
+        //     });
 
         //일정 부분 완료됨
         await axios
@@ -100,11 +99,6 @@ class DailyPlan extends React.Component {
             }).then(() => {
                 calendarInstance.createEvents(this.state.events);
                 console.log("스테이트 저장함 이벤트 목록 =", this.state.events)
-            })
-            .then(() => {
-                calendarInstance.cale
-                // calendarInstance.setCalendarColor()
-
             })
         // console.log(this.state.events);
 
