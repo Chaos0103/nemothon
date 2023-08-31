@@ -1,7 +1,6 @@
 package com.nemo.server.domain.notification;
 
 import com.nemo.server.api.service.event.dto.TwentyFourHourDataDto;
-import com.nemo.server.domain.event.Event;
 import com.nemo.server.domain.event.repository.EventQueryRepository;
 import com.nemo.server.domain.event.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +22,10 @@ import java.util.*;
 public class UpdatePathTimeService {
 
     @Value("${kakaomobility.api.url}")
-    private final String url;
+    private String url;
 
     @Value("${kakaomobility.api.key}")
-    private final String key;
+    private String key;
 
     private final EventQueryRepository eventQueryRepository;
     private final EventRepository eventRepository;
@@ -34,7 +33,7 @@ public class UpdatePathTimeService {
     /**
      * 현재 날짜로부터 24시간안에 있는 일정들 조회 및 달라져 있다면 정보 업데이트
      */
-    @Scheduled(cron = "* 0/1 * * * ?")
+    @Scheduled(cron = "* 0/10 * * * ?")
     private void scheduleGoingTime() {
         LocalDateTime nowDate = LocalDateTime.now();
         List<TwentyFourHourDataDto> twentyFourEvent =
@@ -49,18 +48,25 @@ public class UpdatePathTimeService {
             double arrivalLongitude = twentyFourHourDataDto.getArrivalLongitude();
 
             // 출발지와 도착지로 걸리는 시간 계산
-            String origin = Double.toString(departureLatitude) + Double.toString(departureLongitude);
-            String destination = Double.toString(arrivalLatitude) + Double.toString(arrivalLongitude);
+            String origin =  departureLongitude + "," + departureLatitude;
+            String destination =  arrivalLongitude + "," + arrivalLatitude;
             int calGoingTime = calGoingTime(origin, destination)/60; // 초 -> 분 단위로 환산
 
             // 걸리는 시간이 이전과 같지 않다면 정보 업데이트
             if (goingTime != calGoingTime) {
-                Event event = eventRepository.findById(eventId).get();
-                event.updateGoingTime(goingTime);
+                eventRepository.findById(eventId).ifPresent((event) -> {
+                    event.updateGoingTime(goingTime);
+                });
             }
         }
     }
 
+    /**
+     * 카카오 길찾기 api를 호출해서 걸린는 시간 계산 후 업데이트
+     * @param origin 출발지 경도, 위도
+     * @param destination 도착지 경도, 위도
+     * @return 걸리는 시간
+     */
     private int calGoingTime(String origin, String destination) {
 
         RestTemplate restTemplate = new RestTemplate();
