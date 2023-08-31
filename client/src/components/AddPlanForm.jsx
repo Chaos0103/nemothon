@@ -110,7 +110,7 @@ const AddPlanForm = () => {
                 </div>
             </div>
             <div className='btn-div'>
-                <button onClick={save}>등록</button>
+                <button className='button' onClick={save}>등록</button>
             </div>
 
         </div>
