@@ -1,10 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Notification = () => {
+  const [userId, setUserId] = useState("");
+  // TODO: userId의 정보를 어디서 가져올지를 생각해봐야할 듯
+
   useEffect(() => {
     const eventSource = new EventSource("http://localhost:8080/notifications/subscribe/1");
+
+    // const eventSource = new EventSource("http://localhost:8080/notifications/subscribe/" + userId);
 
     eventSource.addEventListener("sse", (event) => {
       if (event.data !== "EventStream Created. [userId=1]") {
