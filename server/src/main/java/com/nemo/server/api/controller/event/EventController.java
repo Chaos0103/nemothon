@@ -12,8 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -41,9 +41,15 @@ public class EventController {
             @PathVariable String period) {
         String memberEmail = SecurityUtil.getCurrentLoginId();
 
-        String[] day = period.split("/");
-        LocalDateTime start = LocalDateTime.parse(day[0], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        LocalDateTime end = LocalDateTime.parse(day[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        String[] day = period.split("_");
+
+        String[] date = day[0].split("-");
+        LocalDateTime start = LocalDate.of(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2])).atStartOfDay();
+        date = day[1].split("-");
+        LocalDateTime end = LocalDate.of(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2])).atStartOfDay();
+
+//        LocalDateTime start = LocalDateTime.parse(day[0], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        LocalDateTime end = LocalDateTime.parse(day[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
         List<MonthEventResponse> list = eventService.searchMonth(memberEmail, start, end);
         return ApiResponse.ok(list);
@@ -53,8 +59,9 @@ public class EventController {
     public ApiResponse<List<DailyEventResponse>> getDaily(
             @PathVariable String day) {
         String memberEmail = SecurityUtil.getCurrentLoginId();
-
-        LocalDateTime start = LocalDateTime.parse(day, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        String[] date = day.split("-");
+        LocalDateTime start = LocalDate.of(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2])).atStartOfDay();
+//        LocalDateTime start = LocalDateTime.parse(day, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         List<DailyEventResponse> dailyEventResponses = eventService.searchDaily(memberEmail, start);
 
         return ApiResponse.ok(dailyEventResponses);
