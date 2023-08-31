@@ -34,7 +34,7 @@ public class SecurityConfig {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-            .antMatchers("/login","/h2-console/**").permitAll()
+            .antMatchers("/api/login/**","/h2-console/**").permitAll()
             .antMatchers("/api/**").hasRole("MEMBER")
             .anyRequest().authenticated()
             .and()

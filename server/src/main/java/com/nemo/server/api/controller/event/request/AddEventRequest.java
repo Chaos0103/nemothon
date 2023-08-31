@@ -34,6 +34,4 @@ public class AddEventRequest {
         this.departureLongitude = departureLongitude;
         this.categoryId = categoryId;
     }
-
-
 }

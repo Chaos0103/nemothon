@@ -10,11 +10,18 @@ const AddPlanForm = () => {
     const [categoryId, setCategoryId] = useState("");
 
     useEffect(() => {
+        const title = sessionStorage.getItem('title');
+        setTitle(title);
+        const startTime = sessionStorage.getItem('startTime');
+        setStartData(startData);
+        const endTime = sessionStorage.getItem('endTime');
+        setEndData(endData);
+
         const startArea = sessionStorage.getItem('startArea');
         const endArea = sessionStorage.getItem('endArea');
         let start = JSON.parse(startArea);
         let end = JSON.parse(endArea);
-        startExpectedTime(start.x, start.y, end.x, end.y);
+        // startExpectedTime(start.x, start.y, end.x, end.y);
     }, []);
 
     const startExpectedTime = (startX, startY, endX, endY) => {
@@ -47,7 +54,9 @@ const AddPlanForm = () => {
             'categoryId': 1
         };
 
-        const token = localStorage.getItem("jwt");
+        console.log(json);
+
+        const token = localStorage.getItem("token");
         axios.post("/api/event", json, {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -63,11 +72,20 @@ const AddPlanForm = () => {
         <div>
             <div className='form'>
                 <div>
-                    <input type='text' placeholder='일정 제목' onChange={(e) => setTitle(e.target.value)}/>
+                    <input type='text' placeholder='일정 제목' value={title} onChange={(e) => {
+                        setTitle(e.target.value);
+                        sessionStorage.setItem("title", e.target.value);
+                    }}/>
                 </div>
                 <div className='date-input-div'>
-                    <input type='datetime-local' onChange={(e) => setStartData(e.target.value)}/>
-                    <input type='datetime-local' onChange={(e) => setEndData(e.target.value)}/>
+                    <input type='datetime-local' onChange={(e) => {
+                        setStartData(e.target.value);
+                        sessionStorage.setItem("startTime", e.target.value);
+                    }}/>
+                    <input type='datetime-local' onChange={(e) => {
+                        setEndData(e.target.value);
+                        sessionStorage.setItem("endTime", e.target.value);
+                    }}/>
                 </div>
                 {/*출발지, 도착지*/}
                 <div>
@@ -75,8 +93,16 @@ const AddPlanForm = () => {
                     <br/>
                     <Link to='/search/end'>도착지</Link>
                 </div>
+                <div>
+                    <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
                 {/*<div>장소(출발지, 도착지)</div>*/}
             </div>
+            <button onClick={save}>버튼</button>
         </div>
     );
 };
