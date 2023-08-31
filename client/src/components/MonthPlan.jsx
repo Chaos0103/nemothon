@@ -20,6 +20,8 @@ class MonthPlan extends React.Component {
         }
     }
 
+    calendarRef = React.createRef();
+
     async componentDidMount() {
         const calendarInstance = this.calendarRef.current.getInstance();
         const start = toStringByFormatting(calendarInstance.getDateRangeStart());
