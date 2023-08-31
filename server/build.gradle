@@ -48,6 +48,10 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
+	// RestTemplate
+	implementation 'org.apache.httpcomponents:httpcore:4.4.15'
+	implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+
 	//database
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'com.mysql:mysql-connector-j'
