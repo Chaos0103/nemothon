@@ -44,7 +44,7 @@ const AddPlanForm = () => {
             'arrivalLongitude': end.x,
             'departureLatitude': start.y,
             'departureLongitude': start.x,
-            'categoryId':
+            'categoryId': 1
         };
 
         const token = localStorage.getItem("jwt");
