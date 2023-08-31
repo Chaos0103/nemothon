@@ -1,13 +1,17 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import './addPlanForm.scss';
 
 const AddPlanForm = () => {
+    const navigate = useNavigate();
 
     const [title, setTitle] = useState("");
     const [startData, setStartData] = useState("");
     const [endData, setEndData] = useState("");
     const [categoryId, setCategoryId] = useState("");
+    const [nameOne, setNameOne] = useState(null);
+    const [nameTwo, setNameTwo] = useState(null);
 
     useEffect(() => {
         const title = sessionStorage.getItem('title');
@@ -21,7 +25,14 @@ const AddPlanForm = () => {
         const endArea = sessionStorage.getItem('endArea');
         let start = JSON.parse(startArea);
         let end = JSON.parse(endArea);
-        // startExpectedTime(start.x, start.y, end.x, end.y);
+        if (start !== null) {
+            setNameOne(start.placeName);
+        }
+        if (end !== null) {
+            setNameTwo(end.placeName);
+        }
+
+
     }, []);
 
     const startExpectedTime = (startX, startY, endX, endY) => {
@@ -40,7 +51,7 @@ const AddPlanForm = () => {
         const endArea = sessionStorage.getItem('endArea');
         let start = JSON.parse(startArea);
         let end = JSON.parse(endArea);
-
+        startExpectedTime(start.x, start.y, end.x, end.y);
         const json = {
             'title': title,
             'startTime': startData,
@@ -63,7 +74,7 @@ const AddPlanForm = () => {
             }
         })
             .then(() => {
-
+                navigate("/month");
             });
 
     }
@@ -88,21 +99,20 @@ const AddPlanForm = () => {
                     }}/>
                 </div>
                 {/*출발지, 도착지*/}
-                <div>
-                    <Link to='/search/start'>출발지</Link>
+                <div className='address-div'>
+                    <Link to='/search/start'>
+                        <input type='text' value={nameOne} className='address' placeholder='출발지'/>
+                    </Link>
                     <br/>
-                    <Link to='/search/end'>도착지</Link>
+                    <Link to='/search/end'>
+                        <input type='text' value={nameTwo} className='address' placeholder={'도착지'}/>
+                    </Link>
                 </div>
-                <div>
-                    <select>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
-                </div>
-                {/*<div>장소(출발지, 도착지)</div>*/}
             </div>
-            <button onClick={save}>버튼</button>
+            <div className='btn-div'>
+                <button onClick={save}>등록</button>
+            </div>
+
         </div>
     );
 };
