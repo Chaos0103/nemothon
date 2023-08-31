@@ -30,6 +30,8 @@ const Login = () => {
         .post(apiUrl, requestData)
         .then((response) => {
           if (response.data.success) {
+            // 로컬스토리지에 저장하는 로직
+            // localStorage.setItem("AccessToken", token)
             setLoggedIn(true);
             setLoggedSuccess(true);
           } else {
