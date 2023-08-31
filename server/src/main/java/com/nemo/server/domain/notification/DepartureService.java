@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -51,12 +52,11 @@ public class DepartureService {
 
             // 출발 예정시간이 현재와 같다면 알림 보내기
             if (expectdDepartureTime.equals(now)) {
-                System.out.println("hello");
                 String arrivalOnlyTime = notificationUserDto.getArrivalTime().split(" ")[1];
                 String arrivalHour = arrivalOnlyTime.split(":")[0];
                 String arrivalMinute = arrivalOnlyTime.split(":")[1];
-                notificationService.notify(notificationUserDto.getUserId(), "🌟 " + notificationUserDto.getArrivalName() + "로 지금 출발하셔야" +
-                        " 도착시간인 " + arrivalHour + "시 " + arrivalMinute + "분"  + "에 맞게 도착하실 수 있어요! 😆");
+                notificationService.notify(notificationUserDto.getUserId(), ("🌈 " + notificationUserDto.getArrivalName() + "로 지금 출발하셔야" +
+                        " 도착시간인 " + arrivalHour + "시 " + arrivalMinute + "분" + "에 맞게 도착하실 수 있어요! 😆").getBytes(StandardCharsets.UTF_8));
             }
         }
     }
