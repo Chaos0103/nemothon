@@ -3,6 +3,7 @@ package com.nemo.server.domain.event;
 import com.nemo.server.domain.category.Category;
 import com.nemo.server.domain.member.Member;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -35,4 +36,38 @@ public class Event {
 
     @ManyToOne
     private Category category;
+
+    @Builder
+    public Event(Long id, String title, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime expectedDepartureTime, int goingTime, String arrivalName, Double arrivalLatitude, Double arrivalLongitude, Double departureLatitude, Double departureLongitude, Member member, Category category) {
+        this.id = id;
+        this.title = title;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.expectedDepartureTime = expectedDepartureTime;
+        this.goingTime = goingTime;
+        this.arrivalName = arrivalName;
+        this.arrivalLatitude = arrivalLatitude;
+        this.arrivalLongitude = arrivalLongitude;
+        this.departureLatitude = departureLatitude;
+        this.departureLongitude = departureLongitude;
+        this.member = member;
+        this.category = category;
+    }
+
+    public static Event toEntity(String title, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime expectedDepartureTime, int goingTime, String arrivalName, Double arrivalLatitude, Double arrivalLongitude, Double departureLatitude, Double departureLongitude, Member member, Category category) {
+        return Event.builder()
+                .title(title)
+                .startTime(startTime)
+                .endTime(endTime)
+                .expectedDepartureTime(expectedDepartureTime)
+                .goingTime(goingTime)
+                .arrivalName(arrivalName)
+                .arrivalLatitude(arrivalLatitude)
+                .arrivalLongitude(arrivalLongitude)
+                .departureLatitude(departureLatitude)
+                .departureLongitude(departureLongitude)
+                .member(member)
+                .category(category)
+                .build();
+    }
 }
