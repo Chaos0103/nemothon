@@ -6,14 +6,6 @@ import "tui-calendar/dist/tui-calendar.css";
 import "tui-date-picker/dist/tui-date-picker.css";
 import "tui-time-picker/dist/tui-time-picker.css";
 import axios from "axios";
-import TopNav from "./TopNav";
-
-// import axios from "axios";
-
-// this.calendarRef =
-
-// this.calenderRef = React.createRef();
-// const [events, setEvents] = useState([]);
 
 class DailyPlan extends React.Component {
   // const [categories, setCategories] = useState([]);
@@ -106,27 +98,26 @@ class DailyPlan extends React.Component {
   render() {
     return (
       <div>
-        <TopNav />
         <div className="top-bar"></div>
         <Calendar
           ref={this.calendarRef}
           view={"day"}
           height="700px"
-          calendars={[
-            {
-              id: "0",
-              name: "Private",
-              bgColor: "#9e5fff",
-              borderColor: "#9e5fff",
-              color: "#9e5fff",
-            },
-            {
-              id: "1",
-              name: "Company",
-              bgColor: "#00a9ff",
-              borderColor: "#00a9ff",
-            },
-          ]}
+          // calendars={[
+          //     {
+          //         id: '0',
+          //         name: 'Private',
+          //         bgColor: '#9e5fff',
+          //         borderColor: '#9e5fff',
+          //         color: '#9e5fff'
+          //     },
+          //     {
+          //         id: '1',
+          //         name: 'Company',
+          //         bgColor: '#00a9ff',
+          //         borderColor: '#00a9ff'
+          //     }
+          // ]}
           isReadOnly={true}
           // events={[
           //     {
