@@ -1,7 +1,7 @@
-package com.nemo.server.notification;
+package com.nemo.server.domain.notification;
 
 import com.nemo.server.notification.dto.NotificationUserDto;
-import com.nemo.server.notification.service.NotificationService;
+import com.nemo.server.domain.notification.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.nemo.server.notification.service;
+package com.nemo.server.domain.notification.service;
 
 import com.nemo.server.notification.dao.EmitterRepository;
 import lombok.RequiredArgsConstructor;
