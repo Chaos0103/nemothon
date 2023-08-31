@@ -19,12 +19,7 @@ const Home = () => {
 
       <Link to="/search">search</Link>
 
-      {/*<DailyPlan/>*/}
       <MonthPlan />
-
-      <header className="App-header">
-        <h1>test</h1>
-      </header>
     </div>
   );
 };
