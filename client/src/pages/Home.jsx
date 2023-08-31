@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import DailyPlan from "../components/DailyPlan";
 import {useEffect} from "react";
+import MonthPlan from "../components/MonthPlan";
 
 const Home = () => {
     useEffect(() => {
@@ -11,8 +12,12 @@ const Home = () => {
         <div>
             <br/><br/><br/>
             <Link to="/login">login</Link>
+
             <Link to="/search">search</Link>
-            <DailyPlan/>
+
+            {/*<DailyPlan/>*/}
+            <MonthPlan/>
+
             <header className="App-header">
                 <h1>test</h1>
             </header>
