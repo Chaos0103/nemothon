@@ -35,6 +35,5 @@ public class EventQueryRepository {
                 .where(event.member.id.eq(memberId),
                         event.startTime.between(startDay, endDay))
                 .fetch();
-//        return null;
     }
 }
