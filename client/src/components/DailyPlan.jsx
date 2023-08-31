@@ -122,7 +122,8 @@ class DailyPlan extends React.Component {
                             id: '0',
                             name: 'Private',
                             bgColor: '#9e5fff',
-                            borderColor: '#9e5fff'
+                            borderColor: '#9e5fff',
+                            color:'#9e5fff'
                         },
                         {
                             id: '1',
@@ -132,9 +133,32 @@ class DailyPlan extends React.Component {
                         }
                     ]}
                     isReadOnly={true}
-                    // events={
-                    // this.state.events
-                    // }
+                    events={[
+                        {
+                            id: 'event1',
+                            calendarId: '0',
+                            title: '주간 회의',
+                            start: '2023-08-31T09:00:00',
+                            end: '2023-08-31T10:00:00',
+                            goingDuration: 70,
+                        },
+                        {
+                            id: 'event1',
+                            calendarId: '0',
+                            title: '네모톤 참여',
+                            start: '2023-09-01T09:00:00',
+                            end: '2023-09-01T14:00:00',
+                            goingDuration: 20,
+                        },
+                        {
+                            id: 'event1',
+                            calendarId: 'cal2',
+                            title: '인천에서 놀기',
+                            start: '2023-09-01T18:00:00',
+                            end: '2023-09-01T20:00:00',
+                            goingDuration: 120,
+                        }]
+                    }
                     useDetailPopup={true}
                     week={{
                         // dayNames: ["일", "월", "화", "수", "목", "금", "토"],
