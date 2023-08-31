@@ -32,7 +32,7 @@ class DailyPlan extends React.Component {
     //         }
     //     })
     //         .then((response) => {
-    //             console.log("이벤트 목록 = {}", response.data)
+    //             console.log("이벤트 목록 = ", response.data)
     //             setEvents(response.data);
     //         });
     // }
@@ -90,22 +90,23 @@ class DailyPlan extends React.Component {
     //         });
     // }, []);
 
-    componentDidMount() {
+    async componentDidMount() {
         const calendarInstance = this.calendarRef.current.getInstance();
         const showDate = toStringByFormatting(calendarInstance.getDate());
         console.log("표시날짜 = ", showDate);
-        axios
+        let token = localStorage.getItem("token");
+        await axios
             .get(`/api/event/day/${showDate}`, {
                 headers: {
-                    Authorization: localStorage.getItem("token"),
-                    "Content-Type": `application/json`,
+                    Authorization: `Bearer ${token}`
                 }
             })
             .then((response) => {
-                console.log("이벤트 목록 = {}", response.data)
-                this.state.events = response.data;
-                // setEvents(response.data);
-            });
+                console.log("이벤트 목록 =", response.data)
+                this.setState({events: response.data});
+            }).then(calendarInstance.createEvents(this.state.events));
+        console.log(this.state.events);
+
     }
 
     render() {
@@ -121,7 +122,8 @@ class DailyPlan extends React.Component {
                             id: '0',
                             name: 'Private',
                             bgColor: '#9e5fff',
-                            borderColor: '#9e5fff'
+                            borderColor: '#9e5fff',
+                            color:'#9e5fff'
                         },
                         {
                             id: '1',
@@ -131,9 +133,31 @@ class DailyPlan extends React.Component {
                         }
                     ]}
                     isReadOnly={true}
-                    events={
-                        this.state.events
-
+                    events={[
+                        {
+                            id: 'event1',
+                            calendarId: '0',
+                            title: '주간 회의',
+                            start: '2023-08-31T09:00:00',
+                            end: '2023-08-31T10:00:00',
+                            goingDuration: 70,
+                        },
+                        {
+                            id: 'event1',
+                            calendarId: '0',
+                            title: '네모톤 참여',
+                            start: '2023-09-01T09:00:00',
+                            end: '2023-09-01T14:00:00',
+                            goingDuration: 20,
+                        },
+                        {
+                            id: 'event1',
+                            calendarId: 'cal2',
+                            title: '인천에서 놀기',
+                            start: '2023-09-01T18:00:00',
+                            end: '2023-09-01T20:00:00',
+                            goingDuration: 120,
+                        }]
                     }
                     useDetailPopup={true}
                     week={{
