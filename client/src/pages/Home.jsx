@@ -10,6 +10,17 @@ const Home = () => {
     // 리코일, 리덕스
   }, []);
 
+<<<<<<< HEAD
+  return (
+    <div>
+      <TopNav />
+      <div className="top-bar"></div>
+      <Notification></Notification>
+      {/* <Link to="/search">search</Link> */}
+      <MonthPlan />
+    </div>
+  );
+=======
 
     return (
         <div>
@@ -18,6 +29,7 @@ const Home = () => {
             <MonthPlan/>
         </div>
     );
+>>>>>>> a3ff2782a3936dd9512672036d3bcd5c149df17f
 };
 
 export default Home;
