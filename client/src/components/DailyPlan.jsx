@@ -32,7 +32,7 @@ class DailyPlan extends React.Component {
     //         }
     //     })
     //         .then((response) => {
-    //             console.log("이벤트 목록 = {}", response.data)
+    //             console.log("이벤트 목록 = ", response.data)
     //             setEvents(response.data);
     //         });
     // }
@@ -90,21 +90,23 @@ class DailyPlan extends React.Component {
     //         });
     // }, []);
 
-    componentDidMount() {
+    async componentDidMount() {
         const calendarInstance = this.calendarRef.current.getInstance();
         const showDate = toStringByFormatting(calendarInstance.getDate());
         console.log("표시날짜 = ", showDate);
-        axios
+        let token = localStorage.getItem("token");
+        await axios
             .get(`/api/event/day/${showDate}`, {
                 headers: {
-                    Authorization: localStorage.getItem("token")
+                    Authorization: `Bearer ${token}`
                 }
             })
             .then((response) => {
-                console.log("이벤트 목록 = {}", response.data)
-                this.state.events = response.data;
-                // setEvents(response.data);
-            });
+                console.log("이벤트 목록 =", response.data)
+                this.setState({events: response.data});
+            }).then(calendarInstance.createEvents(this.state.events));
+        console.log(this.state.events);
+
     }
 
     render() {
@@ -130,10 +132,9 @@ class DailyPlan extends React.Component {
                         }
                     ]}
                     isReadOnly={true}
-                    events={
-                        this.state.events
-
-                    }
+                    // events={
+                    // this.state.events
+                    // }
                     useDetailPopup={true}
                     week={{
                         // dayNames: ["일", "월", "화", "수", "목", "금", "토"],

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import DailyPlan from "../components/DailyPlan";
+// import DailyPlan from "../components/DailyPlan";
 import { useEffect } from "react";
 import MonthPlan from "../components/MonthPlan";
-import Notification from "../components/Notification";
+// import Notification from "../components/Notification";
 
 const Home = () => {
   useEffect(() => {
@@ -14,7 +14,7 @@ const Home = () => {
       <br />
       <br />
       <br />
-      <Notification></Notification>
+      {/*<Notification></Notification>*/}
       <Link to="/login">login</Link>
 
       <Link to="/search">search</Link>
