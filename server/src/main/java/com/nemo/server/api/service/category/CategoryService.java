@@ -27,6 +27,7 @@ public class CategoryService {
         return CategoryResponse.of(savedCategory);
     }
 
+    @Transactional(readOnly = true)
     public List<CategoryResponse> gets(String email) {
         List<Category> categories = repository.findByEmail(email);
         return categories.stream()
@@ -34,6 +35,7 @@ public class CategoryService {
             .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public CategoryResponse get(Long categoryId) {
         Category findCategory = repository.findById(categoryId)
             .orElseThrow(NoSuchElementException::new);
@@ -58,6 +60,4 @@ public class CategoryService {
         int index = random.nextInt(4);
         return COLOR_CODE[index];
     }
-
-    //
 }
