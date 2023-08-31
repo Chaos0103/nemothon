@@ -36,12 +36,4 @@ public class CustomUserDetailsService implements UserDetailsService {
             .roles(member.getRoles().toArray(new String[0]))
             .build();
     }
-
-    private UserDetails createStoreUserDetails(Store store) {
-        return User.builder()
-            .username(store.getUsername())
-            .password(passwordEncoder.encode(store.getPassword()))
-            .roles(store.getRoles().toArray(new String[0]))
-            .build();
-    }
 }
